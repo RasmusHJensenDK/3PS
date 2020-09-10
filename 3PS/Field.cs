@@ -13,7 +13,6 @@ namespace _3PS
         {
             this.token = token;
             this.tokenPosition = tokenPosition;
-            
         }
 
         public int GetPieceToken()
