@@ -7,7 +7,13 @@ namespace _3PS
     class Multiplayer
     {
         private bool win { get; set; }
+        private Board board;
         public Multiplayer(Board board)
+        {
+            this.board = board;
+        }
+
+        public void Run()
         {
             Console.WriteLine("First player name?");
             string playername = Console.ReadLine();

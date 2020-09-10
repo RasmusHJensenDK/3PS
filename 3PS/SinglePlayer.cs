@@ -8,8 +8,12 @@ namespace _3PS
     class SinglePlayer
     {
         public bool win { get; set; }
-
+        private Board board;
         public SinglePlayer(Board board)
+        {
+            this.board = board;
+        }
+        public void Run()
         {
             Console.WriteLine("Player name?");
             string playername = Console.ReadLine();
@@ -22,7 +26,7 @@ namespace _3PS
 
             do
             {
-                if(!player.GetPlayerTurn())
+                if (!player.GetPlayerTurn())
                 {
                     Console.Clear();
                     board.DrawBoard();
@@ -31,7 +35,7 @@ namespace _3PS
                     board.MoveField(player, playermove);
                     bot.SetPlayerTurn(false);
                 }
-                if(!bot.GetPlayerTurn())
+                if (!bot.GetPlayerTurn())
                 {
                     Console.Clear();
                     board.DrawBoard();

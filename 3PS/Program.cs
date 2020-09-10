@@ -7,6 +7,7 @@ namespace _3PS
         static void Main(string[] args)
         {
             Game game = new Game();
+            game.NewGame();
         }
     }
 }
