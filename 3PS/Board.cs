@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace _3PS
 {
@@ -15,34 +16,61 @@ namespace _3PS
                 Field fields = new Field(Convert.ToChar(i));
                 field[i] = fields;
             }
-            Console.Clear();
         }
 
         public void DrawBoard()
         {
-            Console.WriteLine();
             Console.WriteLine("| 0(" + field[0].GetPieceToken() + ") | 1(" + field[1].GetPieceToken() + ") | 2(" + field[2].GetPieceToken() + ") |");
             Console.WriteLine("| 3(" + field[3].GetPieceToken() + ") | 4(" + field[4].GetPieceToken() + ") | 5(" + field[5].GetPieceToken() + ") |");
             Console.WriteLine("| 6(" + field[6].GetPieceToken() + ") | 7(" + field[7].GetPieceToken() + ") | 8(" + field[8].GetPieceToken() + ") |");
         }
-        public Field[] GetField()
-        {
-            return this.field;
-        }
 
-        public void MoveField(Player player, int fieldToMove)
+        public void MoveField(Player player, Player playertwo, int fieldToMove)
         {
-//::IMPLEMENT::Check if token is allready there.
-            Field fields = new Field(fieldToMove, player.GetPlayerToken());
-            field[fieldToMove] = fields;
-        }
-        public Field DrawField(int i)
-        {
-            return field[i];
+            Field playermove = new Field(fieldToMove, player.GetPlayerToken());
+            //::IMPLEMENT::Check if token is allready there.
+            while (field[fieldToMove].GetToken() != null)
+            {
+                Console.WriteLine("Spot allready taken, choose a new spot");
+                fieldToMove = Convert.ToInt32(Console.ReadLine());
+            }
+            field[fieldToMove] = playermove;
+            string IsPieceTokenNull = field[0].GetPieceToken();
+            Thread.Sleep(1000);
         }
 //::IMPLEMENT::Check for 3 on a row horizontal vertical diagonal.
         public bool CheckForWin()
         {
+            //Figure out a way to check if fields contains Tokens before running this.
+            if (true)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (field[i].GetToken() == field[i + 1].GetToken() && field[i + 1].GetToken() == field[i + 2].GetToken())
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
+                    if (field[i + 1].GetToken() == field[i + 4].GetToken() && field[i + 4].GetToken() == field[i + 7].GetToken())
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    if (field[i].GetToken() == field[i + 4].GetToken() && field[i + 4].GetToken() == field[i + 8].GetToken())
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
+                    if (field[i].GetToken() == field[i + 2].GetToken() && field[i + 2].GetToken() == field[i + 6].GetToken())
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
+                }
+            }
             return false;
         }
     }

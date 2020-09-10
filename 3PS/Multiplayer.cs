@@ -33,7 +33,7 @@ namespace _3PS
                     board.DrawBoard();
                     Console.WriteLine(playername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
-                    board.MoveField(player, playermove);
+                    board.MoveField(player, secondplayer, playermove);
                     secondplayer.SetPlayerTurn(false);
                 }
                 if (!secondplayer.GetPlayerTurn())
@@ -42,7 +42,7 @@ namespace _3PS
                     board.DrawBoard();
                     Console.WriteLine(secondplayername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
-                    board.MoveField(secondplayer, playermove);
+                    board.MoveField(secondplayer, player, playermove);
                     player.SetPlayerTurn(false);
                 }
             } while (!win);
