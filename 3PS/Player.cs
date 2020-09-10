@@ -7,14 +7,19 @@ namespace _3PS
     class Player
     {
         private string playerName;
-
-        public Player(string playerName)
+        private string playerToken;
+        public Player(string playerName, string playerToken)
         {
             this.playerName = playerName;
+            this.playerToken = playerToken;
         }
         public string GetPlayerName()
         {
             return playerName;
+        }
+        public string GetPlayerToken()
+        {
+            return playerToken;
         }
     }
 }

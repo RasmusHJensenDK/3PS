@@ -13,6 +13,7 @@ namespace _3PS
         {
             this.token = token;
             this.tokenPosition = tokenPosition;
+            
         }
 
         public int GetPieceToken()
@@ -23,6 +24,11 @@ namespace _3PS
         public void SetField(int str)
         {
             tokenPosition = str;
+        }
+
+        public Token GetToken()
+        {
+            return token;
         }
     }
 }
