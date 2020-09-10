@@ -1,44 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 
 namespace _3PS
 {
-    class SinglePlayer
+    class Multiplayer
     {
-        public bool win { get; set; }
-
-        public SinglePlayer(Board board)
+        private bool win { get; set; }
+        public Multiplayer(Board board)
         {
-            Console.WriteLine("Player name?");
+            Console.WriteLine("First player name?");
             string playername = Console.ReadLine();
+            Console.WriteLine("Second player name?");
+            string secondplayername = Console.ReadLine();
 
-            Random random = new Random();
             Token tokenplayer = new Token(tokenValue.X);
+            Token tokensecondplayer = new Token(tokenValue.O);
             Player player = new Player(playername, false, tokenplayer);
-            Token tokenbot = new Token(tokenValue.O);
-            Player bot = new Player("bot", true, tokenbot);
+            Player secondplayer = new Player(secondplayername, true, tokensecondplayer);
 
             do
             {
-                if(!player.GetPlayerTurn())
+                if (!player.GetPlayerTurn())
                 {
                     Console.Clear();
                     board.DrawBoard();
                     Console.WriteLine(playername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
                     board.MoveField(player, playermove);
-                    bot.SetPlayerTurn(false);
+                    secondplayer.SetPlayerTurn(false);
                 }
-                if(!bot.GetPlayerTurn())
+                if (!secondplayer.GetPlayerTurn())
                 {
                     Console.Clear();
                     board.DrawBoard();
-                    Console.WriteLine("Bot is thinking...");
-                    Thread.Sleep(400);
-                    int botmove = random.Next(0, 8);
-                    board.MoveField(bot, botmove);
+                    Console.WriteLine(secondplayername + " your move");
+                    int playermove = Convert.ToInt32(Console.ReadLine());
+                    board.MoveField(secondplayer, playermove);
                     player.SetPlayerTurn(false);
                 }
             } while (!win);

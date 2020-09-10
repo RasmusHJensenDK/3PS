@@ -6,7 +6,7 @@ namespace _3PS
     {
         static void Main(string[] args)
         {
-            SinglePlayer game = new SinglePlayer();
+            Game game = new Game();
         }
     }
 }
