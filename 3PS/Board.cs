@@ -20,11 +20,10 @@ namespace _3PS
 
         public void DrawBoard()
         {
-//::IMPORTANT:: Figure out why the tokenvalue is not printed??!
             Console.WriteLine();
-            Console.WriteLine("| 0(" + field[0].GetPieceToken().ToString() + ") | 1(" + field[1].GetPieceToken().ToString() + ") | 2(" + field[2].GetPieceToken().ToString() + ") |");
-            Console.WriteLine("| 3(" + field[3].GetPieceToken().ToString() + ") | 4(" + field[4].GetPieceToken().ToString() + ") | 5(" + field[5].GetPieceToken().ToString() + ") |");
-            Console.WriteLine("| 6(" + field[6].GetPieceToken().ToString() + ") | 7(" + field[7].GetPieceToken().ToString() + ") | 8(" + field[8].GetPieceToken().ToString() + ") |");
+            Console.WriteLine("| 0(" + field[0].GetPieceToken() + ") | 1(" + field[1].GetPieceToken() + ") | 2(" + field[2].GetPieceToken() + ") |");
+            Console.WriteLine("| 3(" + field[3].GetPieceToken() + ") | 4(" + field[4].GetPieceToken() + ") | 5(" + field[5].GetPieceToken() + ") |");
+            Console.WriteLine("| 6(" + field[6].GetPieceToken() + ") | 7(" + field[7].GetPieceToken() + ") | 8(" + field[8].GetPieceToken() + ") |");
         }
         public Field[] GetField()
         {

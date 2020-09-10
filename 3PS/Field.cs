@@ -14,9 +14,13 @@ namespace _3PS
             this.tokenPosition = tokenPosition;
         }
 
-        public int GetPieceToken()
+        public string GetPieceToken()
         {
-            return tokenPosition;
+            if( token == null)
+            {
+                return "";
+            }
+            return token.GetTokenValue();
         }
 
         public void SetField(int str)
