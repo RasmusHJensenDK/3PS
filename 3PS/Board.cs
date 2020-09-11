@@ -28,7 +28,7 @@ namespace _3PS
         public void MoveField(Player player, Player playertwo, int fieldToMove)
         {
             Field playermove = new Field(fieldToMove, player.GetPlayerToken());
-            //::IMPLEMENT::Check if token is allready there.
+//::IMPLEMENT::Check if token is allready there.
             while (field[fieldToMove].GetToken() != null)
             {
                 Console.WriteLine("Spot allready taken, choose a new spot");
@@ -38,10 +38,9 @@ namespace _3PS
             string IsPieceTokenNull = field[0].GetPieceToken();
             Thread.Sleep(1000);
         }
-        //::IMPLEMENT::Check for 3 on a row horizontal vertical diagonal.
         public bool CheckForWin()
         {
-            //Figure out a way to check if fields contains Tokens before running this.
+//Figure out a way to check if fields contains Tokens before running this.
             if (true)
             {
 //Vertical
@@ -49,8 +48,11 @@ namespace _3PS
                 {
                     if (field[i].GetToken() == field[i + 3].GetToken() && field[i + 3].GetToken() == field[i + 6].GetToken())
                     {
-                        Console.WriteLine("Its a win");
-                        return true;
+                        if (field[i].GetToken() != null && field[i + 3].GetToken() != null && field[i + 6].GetToken() != null)
+                        {
+                            Console.WriteLine("Its a win");
+                            return true;
+                        }
                     }
                 }
 //Horizontal
@@ -58,21 +60,30 @@ namespace _3PS
                 {
                     if (field[i].GetToken() == field[i + 1].GetToken() && field[i + 1].GetToken() == field[i + 2].GetToken())
                     {
-                        Console.WriteLine("Its a win");
-                        return true;
+                        if (field[i].GetToken() != null && field[i + 1].GetToken() != null && field[i + 2].GetToken() != null)
+                        {
+                            Console.WriteLine("Its a win");
+                            return true;
+                        }
                     }
                     i = i + 2;
                 }
 //Diagonal
                 if (field[0].GetToken() == field[4].GetToken() && field[4].GetToken() == field[8].GetToken())
                 {
-                    Console.WriteLine("Its a win");
-                    return true;
+                    if (field[0].GetToken() != null && field[4].GetToken() != null && field[8].GetToken() != null)
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
                 }
                 if (field[2].GetToken() == field[4].GetToken() && field[4].GetToken() == field[6].GetToken())
                 {
-                    Console.WriteLine("Its a win");
-                    return true;
+                    if (field[2].GetToken() != null && field[4].GetToken() != null && field[6].GetToken() != null)
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
                 }
             }
             return false;
