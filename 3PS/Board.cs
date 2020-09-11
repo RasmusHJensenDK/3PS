@@ -38,12 +38,22 @@ namespace _3PS
             string IsPieceTokenNull = field[0].GetPieceToken();
             Thread.Sleep(1000);
         }
-//::IMPLEMENT::Check for 3 on a row horizontal vertical diagonal.
+        //::IMPLEMENT::Check for 3 on a row horizontal vertical diagonal.
         public bool CheckForWin()
         {
             //Figure out a way to check if fields contains Tokens before running this.
             if (true)
             {
+                //Vertical
+                for (int i = 0; i < 3; i++)
+                {
+                    if (field[i].GetToken() == field[i + 3].GetToken() && field[i + 3].GetToken() == field[i + 6].GetToken())
+                    {
+                        Console.WriteLine("Its a win");
+                        return true;
+                    }
+                }
+                //Horizontal
                 for (int i = 0; i < 3; i++)
                 {
                     if (field[i].GetToken() == field[i + 1].GetToken() && field[i + 1].GetToken() == field[i + 2].GetToken())
@@ -51,24 +61,18 @@ namespace _3PS
                         Console.WriteLine("Its a win");
                         return true;
                     }
-                    if (field[i + 1].GetToken() == field[i + 4].GetToken() && field[i + 4].GetToken() == field[i + 7].GetToken())
-                    {
-                        Console.WriteLine("Its a win");
-                        return true;
-                    }
+                    i = i + 2;
                 }
-                for (int i = 0; i < 2; i++)
+                //Diagonal
+                if (field[0].GetToken() == field[4].GetToken() && field[4].GetToken() == field[8].GetToken())
                 {
-                    if (field[i].GetToken() == field[i + 4].GetToken() && field[i + 4].GetToken() == field[i + 8].GetToken())
-                    {
-                        Console.WriteLine("Its a win");
-                        return true;
-                    }
-                    if (field[i].GetToken() == field[i + 2].GetToken() && field[i + 2].GetToken() == field[i + 6].GetToken())
-                    {
-                        Console.WriteLine("Its a win");
-                        return true;
-                    }
+                    Console.WriteLine("Its a win");
+                    return true;
+                }
+                if (field[2].GetToken() == field[4].GetToken() && field[4].GetToken() == field[6].GetToken())
+                {
+                    Console.WriteLine("Its a win");
+                    return true;
                 }
             }
             return false;
