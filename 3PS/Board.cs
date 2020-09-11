@@ -44,7 +44,7 @@ namespace _3PS
             //Figure out a way to check if fields contains Tokens before running this.
             if (true)
             {
-                //Vertical
+//Vertical
                 for (int i = 0; i < 3; i++)
                 {
                     if (field[i].GetToken() == field[i + 3].GetToken() && field[i + 3].GetToken() == field[i + 6].GetToken())
@@ -53,7 +53,7 @@ namespace _3PS
                         return true;
                     }
                 }
-                //Horizontal
+//Horizontal
                 for (int i = 0; i < 3; i++)
                 {
                     if (field[i].GetToken() == field[i + 1].GetToken() && field[i + 1].GetToken() == field[i + 2].GetToken())
@@ -63,7 +63,7 @@ namespace _3PS
                     }
                     i = i + 2;
                 }
-                //Diagonal
+//Diagonal
                 if (field[0].GetToken() == field[4].GetToken() && field[4].GetToken() == field[8].GetToken())
                 {
                     Console.WriteLine("Its a win");
