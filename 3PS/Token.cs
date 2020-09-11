@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _3PS
 {
-    public enum tokenValue { X, O, E}
+    public enum tokenValue { X, O }
     class Token
     {
         private string tokenValue;
