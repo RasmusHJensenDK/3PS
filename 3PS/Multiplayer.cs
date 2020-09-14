@@ -34,6 +34,11 @@ namespace _3PS
                     Console.WriteLine(playername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
                     board.MoveField(player, secondplayer, playermove);
+                    if(board.CheckForWin())
+                    {
+                        Console.WriteLine("Player " + player.GetPlayerName() + " won the game!");
+                        win = true;
+                    }
                     secondplayer.SetPlayerTurn(false);
                 }
                 if (!secondplayer.GetPlayerTurn())
@@ -43,6 +48,11 @@ namespace _3PS
                     Console.WriteLine(secondplayername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
                     board.MoveField(secondplayer, player, playermove);
+                    if (board.CheckForWin())
+                    {
+                        Console.WriteLine("Player " + secondplayer.GetPlayerName() + " won the game!");
+                        win = true;
+                    }
                     player.SetPlayerTurn(false);
                 }
             } while (!win);

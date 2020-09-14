@@ -8,20 +8,24 @@ namespace _3PS
     {
         private bool playerturn { get; set; }
         private string playerName;
-        private Token token;
+        private Token[] token = new Token[3];
         public Player(string playerName, bool playerturn, Token token)
         {
             this.playerName = playerName;
             this.playerturn = playerturn;
-            this.token = token;
+
+            for(int i = 0; i < 3; i++)
+            {
+                this.token[i] = token;
+            }
         }
         public string GetPlayerName()
         {
             return playerName;
         }
-        public Token GetPlayerToken()
+        public Token GetPlayerToken(int i)
         {
-            return token;
+            return token[i];
         }
         public void SetPlayerTurn(bool b)
         {

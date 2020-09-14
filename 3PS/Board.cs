@@ -8,6 +8,7 @@ namespace _3PS
     class Board
     {
         private Field[] field;
+        private int tokennumber = 0;
         public Board()
         {
             this.field = new Field[9];
@@ -27,16 +28,15 @@ namespace _3PS
 
         public void MoveField(Player player, Player playertwo, int fieldToMove)
         {
-            Field playermove = new Field(fieldToMove, player.GetPlayerToken());
-//::IMPLEMENT::Check if token is allready there.
-            while (field[fieldToMove].GetToken() != null)
+            Field playermove = new Field(fieldToMove, player.GetPlayerToken(tokennumber));
+            while (field[fieldToMove].GetToken() == player.GetPlayerToken(tokennumber) || field[fieldToMove].GetToken() == playertwo.GetPlayerToken(tokennumber))
             {
                 Console.WriteLine("Spot allready taken, choose a new spot");
                 fieldToMove = Convert.ToInt32(Console.ReadLine());
             }
             field[fieldToMove] = playermove;
             string IsPieceTokenNull = field[0].GetPieceToken();
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
         public bool CheckForWin()
         {
@@ -47,7 +47,7 @@ namespace _3PS
                 for (int i = 0; i < 3; i++)
                 {
                     if (field[i].GetToken() == field[i + 3].GetToken() && field[i + 3].GetToken() == field[i + 6].GetToken())
-                    {
+                    { 
                         if (field[i].GetToken() != null && field[i + 3].GetToken() != null && field[i + 6].GetToken() != null)
                         {
                             Console.WriteLine("Its a win");
