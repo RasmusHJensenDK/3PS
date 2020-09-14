@@ -9,6 +9,7 @@ namespace _3PS
     {
         private Field[] field;
         private int tokennumber = 0;
+        private Random random;
         public Board()
         {
             this.field = new Field[9];
@@ -32,6 +33,17 @@ namespace _3PS
             while (field[fieldToMove].GetToken() == player.GetPlayerToken(tokennumber) || field[fieldToMove].GetToken() == playertwo.GetPlayerToken(tokennumber))
             {
                 Console.WriteLine("Spot allready taken, choose a new spot");
+                if(player.GetPlayerName() == "Bot")
+                {
+                    int nextfield = random.Next(0, 8);
+                    Field botmove = new Field(fieldToMove, playertwo.GetPlayerToken(tokennumber));
+                    while (field[fieldToMove].GetToken() == botmove.GetToken() || field[fieldToMove].GetToken() == player.GetPlayerToken(tokennumber) || field[nextfield].GetToken() == player.GetPlayerToken(tokennumber))
+                    {
+                        nextfield = random.Next(0, 8);
+                        botmove = new Field(nextfield, playertwo.GetPlayerToken(tokennumber));
+                    }
+                    field[fieldToMove] = botmove;
+                }
                 fieldToMove = Convert.ToInt32(Console.ReadLine());
             }
             field[fieldToMove] = playermove;
@@ -40,17 +52,12 @@ namespace _3PS
         }
         public bool CheckForWin(Player player)
         {
-            //Figure out a way to check if fields contains Tokens before running this.
-            //Vertical
             for (int i = 0; i < 3; i++)
             {
                 if (field[i].GetToken() == player.GetPlayerToken(0) && field[i + 3].GetToken() == player.GetPlayerToken(0) && field[i + 6].GetToken() == player.GetPlayerToken(0))
                 {
                     return true;
                 }
-                // Round 1 : 0 3 6 
-                // Round 2 : 1 4 7
-                // Round 3 : 2 5 8 
             }
             //Horizontal
             int newint = 0;
@@ -61,9 +68,6 @@ namespace _3PS
                     return true;
                 }
                 newint = newint + 3;
-                // Round 1 : 0 1 3
-                // Round 2 : 3 4 5
-                // Round 3 : 6 7 8
             }
             //Diagonal
             if (field[0].GetToken() == player.GetPlayerToken(0) && field[4].GetToken() == player.GetPlayerToken(0) && field[8].GetToken() == player.GetPlayerToken(0))

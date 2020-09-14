@@ -35,9 +35,10 @@ namespace _3PS
                     board.MoveField(player, bot, playermove);
                     if(board.CheckForWin(player))
                     {
+                        Console.Clear();
                         win = true;
+                        board.DrawBoard();
                         Console.WriteLine("Player " + playername + " won the game!");
-                        Thread.Sleep(20000);
                         break;
                     }
                     bot.SetPlayerTurn(false);
@@ -52,9 +53,10 @@ namespace _3PS
                     board.MoveField(bot, player, botmove);
                     if (board.CheckForWin(bot))
                     {
+                        Console.Clear();
                         win = true;
+                        board.DrawBoard();
                         Console.WriteLine("Bot won the game!");
-                        Thread.Sleep(20000);
                         break;
                     }
                     player.SetPlayerTurn(false);

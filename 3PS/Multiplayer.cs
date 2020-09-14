@@ -36,6 +36,8 @@ namespace _3PS
                     board.MoveField(player, secondplayer, playermove);
                     if(board.CheckForWin(player))
                     {
+                        Console.Clear();
+                        board.DrawBoard();
                         Console.WriteLine("Player " + player.GetPlayerName() + " won the game!");
                         win = true;
                     }
@@ -50,6 +52,8 @@ namespace _3PS
                     board.MoveField(secondplayer, player, playermove);
                     if (board.CheckForWin(secondplayer))
                     {
+                        Console.Clear();
+                        board.DrawBoard();
                         Console.WriteLine("Player " + secondplayer.GetPlayerName() + " won the game!");
                         win = true;
                     }
