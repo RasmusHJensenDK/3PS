@@ -27,28 +27,28 @@ namespace _3PS
 
             do
             {
-                if (!player.GetPlayerTurn())
+                if (!player.GetPlayerTurn() && win == false)
                 {
                     Console.Clear();
                     board.DrawBoard();
                     Console.WriteLine(playername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
                     board.MoveField(player, secondplayer, playermove);
-                    if(board.CheckForWin())
+                    if(board.CheckForWin(player))
                     {
                         Console.WriteLine("Player " + player.GetPlayerName() + " won the game!");
                         win = true;
                     }
                     secondplayer.SetPlayerTurn(false);
                 }
-                if (!secondplayer.GetPlayerTurn())
+                if (!secondplayer.GetPlayerTurn() && win == false)
                 {
                     Console.Clear();
                     board.DrawBoard();
                     Console.WriteLine(secondplayername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
                     board.MoveField(secondplayer, player, playermove);
-                    if (board.CheckForWin())
+                    if (board.CheckForWin(secondplayer))
                     {
                         Console.WriteLine("Player " + secondplayer.GetPlayerName() + " won the game!");
                         win = true;

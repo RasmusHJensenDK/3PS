@@ -38,53 +38,41 @@ namespace _3PS
             string IsPieceTokenNull = field[0].GetPieceToken();
             Thread.Sleep(500);
         }
-        public bool CheckForWin()
+        public bool CheckForWin(Player player)
         {
-//Figure out a way to check if fields contains Tokens before running this.
-            if (true)
+            //Figure out a way to check if fields contains Tokens before running this.
+            //Vertical
+            for (int i = 0; i < 3; i++)
             {
-//Vertical
-                for (int i = 0; i < 3; i++)
+                if (field[i].GetToken() == player.GetPlayerToken(0) && field[i + 3].GetToken() == player.GetPlayerToken(0) && field[i + 6].GetToken() == player.GetPlayerToken(0))
                 {
-                    if (field[i].GetToken() == field[i + 3].GetToken() && field[i + 3].GetToken() == field[i + 6].GetToken())
-                    { 
-                        if (field[i].GetToken() != null && field[i + 3].GetToken() != null && field[i + 6].GetToken() != null)
-                        {
-                            Console.WriteLine("Its a win");
-                            return true;
-                        }
-                    }
+                    return true;
                 }
-//Horizontal
-                for (int i = 0; i < 3; i++)
+                // Round 1 : 0 3 6 
+                // Round 2 : 1 4 7
+                // Round 3 : 2 5 8 
+            }
+            //Horizontal
+            int newint = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                if (field[newint].GetToken() == player.GetPlayerToken(0) && field[newint + 1].GetToken() == player.GetPlayerToken(0) && field[newint + 2].GetToken() == player.GetPlayerToken(0))
                 {
-                    if (field[i].GetToken() == field[i + 1].GetToken() && field[i + 1].GetToken() == field[i + 2].GetToken())
-                    {
-                        if (field[i].GetToken() != null && field[i + 1].GetToken() != null && field[i + 2].GetToken() != null)
-                        {
-                            Console.WriteLine("Its a win");
-                            return true;
-                        }
-                    }
-                    i = i + 2;
+                    return true;
                 }
-//Diagonal
-                if (field[0].GetToken() == field[4].GetToken() && field[4].GetToken() == field[8].GetToken())
-                {
-                    if (field[0].GetToken() != null && field[4].GetToken() != null && field[8].GetToken() != null)
-                    {
-                        Console.WriteLine("Its a win");
-                        return true;
-                    }
-                }
-                if (field[2].GetToken() == field[4].GetToken() && field[4].GetToken() == field[6].GetToken())
-                {
-                    if (field[2].GetToken() != null && field[4].GetToken() != null && field[6].GetToken() != null)
-                    {
-                        Console.WriteLine("Its a win");
-                        return true;
-                    }
-                }
+                newint = newint + 3;
+                // Round 1 : 0 1 3
+                // Round 2 : 3 4 5
+                // Round 3 : 6 7 8
+            }
+            //Diagonal
+            if (field[0].GetToken() == player.GetPlayerToken(0) && field[4].GetToken() == player.GetPlayerToken(0) && field[8].GetToken() == player.GetPlayerToken(0))
+            {
+                return true;
+            }
+            if (field[2].GetToken() == player.GetPlayerToken(0) && field[4].GetToken() == player.GetPlayerToken(0) && field[6].GetToken() == player.GetPlayerToken(0))
+            {
+                return true;
             }
             return false;
         }

@@ -26,21 +26,23 @@ namespace _3PS
 
             do
             {
-                if (!player.GetPlayerTurn())
+                if (!player.GetPlayerTurn() && win == false)
                 {
                     Console.Clear();
                     board.DrawBoard();
                     Console.WriteLine(playername + " your move");
                     int playermove = Convert.ToInt32(Console.ReadLine());
                     board.MoveField(player, bot, playermove);
-                    if(board.CheckForWin())
+                    if(board.CheckForWin(player))
                     {
                         win = true;
                         Console.WriteLine("Player " + playername + " won the game!");
+                        Thread.Sleep(20000);
+                        break;
                     }
                     bot.SetPlayerTurn(false);
                 }
-                if (!bot.GetPlayerTurn())
+                if (!bot.GetPlayerTurn() && win == false)
                 {
                     Console.Clear();
                     board.DrawBoard();
@@ -48,10 +50,12 @@ namespace _3PS
                     Thread.Sleep(400);
                     int botmove = random.Next(0, 8);
                     board.MoveField(bot, player, botmove);
-                    if (board.CheckForWin())
+                    if (board.CheckForWin(bot))
                     {
                         win = true;
                         Console.WriteLine("Bot won the game!");
+                        Thread.Sleep(20000);
+                        break;
                     }
                     player.SetPlayerTurn(false);
                 }
